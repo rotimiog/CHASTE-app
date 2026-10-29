@@ -1,0 +1,17 @@
+CREATE DATABASE IF NOT EXISTS chaste_app_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+USE chaste_app_db;
+
+CREATE TABLE IF NOT EXISTS chaste_app_login_db (
+    id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    security_question VARCHAR(255) NOT NULL,
+    security_answer VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+ALTER TABLE chaste_app_login_db
+ADD COLUMN IF NOT EXISTS security_question VARCHAR(255) NULL,
+ADD COLUMN IF NOT EXISTS security_answer VARCHAR(255) NULL;
